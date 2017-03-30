@@ -1,6 +1,6 @@
 {
   "name": "read-remote-pkg",
-  "version": "0.0.1-prerelease",
+  "version": "0.1.0-prerelease",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "dependencies": {
