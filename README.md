@@ -19,7 +19,7 @@ Promise.all([
   readRemotePkg('my-pkg', path.resolve('../..'));
 ])
 .then((packages) => {
-  console.log(packages.map(p => p.name).join(', '));
+  console.log(packages.map(p => p.name).join(', ')); //my-pkg, my-pkg, my-pkg
 });
 
 ```
