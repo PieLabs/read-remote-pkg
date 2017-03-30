@@ -16,17 +16,9 @@ describe('package-info', () => {
       view: stub().returns(some({}))
     }
 
-    localFile = {
-      match: stub().returns(false),
-      view: stub().returns(some({}))
-    }
-
     deps = _.extend({
       './local': {
-        default: stub().returns(local),
-      },
-      './local-file': {
-        default: stub().returns(localFile),
+        default: local
       },
       './npm': {
         default: {
@@ -43,8 +35,6 @@ describe('package-info', () => {
     }, deps);
 
     let mod = proxyquire('../../lib/index', deps);
-    // mod.info.deps = deps;
-    // mod.info.local = local;
     return { readRemote: mod.default, deps };
   }
 
@@ -123,5 +113,4 @@ describe('package-info', () => {
       });
     });
   });
-
 });

@@ -6,4 +6,4 @@ export declare type KeyValue = {
     key: string;
     value: string;
 };
-export default function (key: string, value: string, dir: string): Promise<{}>;
+export default function (key: string, value: string): Promise<{}>;

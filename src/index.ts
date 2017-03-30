@@ -1,9 +1,8 @@
 import * as _ from 'lodash';
 
-import Local from './local';
-import LocalFile from './local-file';
 import { buildLogger } from 'log-factory';
 import github from './github';
+import local from './local';
 import npm from './npm';
 
 const logger = buildLogger();
@@ -19,15 +18,14 @@ export type KeyValue = {
   value: string
 };
 
-export default function (key: string, value: string, dir: string) : Promise<{}> {
+export default function (key: string, value: string) : Promise<{}> {
 
   const keyValue = { key , value };
 
-  logger.debug('[read-remote-pkg] key: ', key, 'value: ', value, ' dir: ', dir);
+  logger.debug('[read-remote-pkg] key: ', key, 'value: ', value);
 
   let viewers: Viewer[] = [
-    new LocalFile(dir),
-    new Local(dir),
+    local,
     npm,
     github
   ];
@@ -35,7 +33,7 @@ export default function (key: string, value: string, dir: string) : Promise<{}> 
   let compatible: Viewer[] = _.filter(viewers, v => v.match(keyValue));
 
   logger.debug('compatible: ', compatible);
-  
+
   let out = _.reduce(compatible, (acc, v) => {
     logger.silly('[info] acc: ', acc);
     logger.silly('[info] v: ', v);

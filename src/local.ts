@@ -6,12 +6,10 @@ import { join } from 'path';
 
 const logger = buildLogger();
 
-export default class Local implements Viewer {
-
-  constructor(private cwd: string) { }
+class Local implements Viewer {
 
   private pkgPath(pattern: KeyValue): string {
-    return join(this.cwd, pattern.value, 'package.json');
+    return join(pattern.value, 'package.json');
   }
 
   match(pattern: KeyValue): boolean {
@@ -44,3 +42,7 @@ export default class Local implements Viewer {
     }
   }
 }
+
+let l : Viewer = new Local();
+export default l;
+

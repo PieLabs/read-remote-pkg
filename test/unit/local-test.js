@@ -16,7 +16,7 @@ let stat = (isFile) => {
 }
 
 describe('local', () => {
-  let Local, local, deps;
+  let local, deps;
 
   beforeEach(() => {
     deps = {
@@ -26,8 +26,7 @@ describe('local', () => {
       }
     };
 
-    Local = proxyquire(`${ROOT}/local`, deps).default;
-    local = new Local('dir');
+    local = proxyquire(`${ROOT}/local`, deps).default;
   });
 
   describe('match', () => {
@@ -43,7 +42,7 @@ describe('local', () => {
       });
 
       it('calls statSync', () => {
-        assert.calledWith(statSync, '../package.json');
+        assert.calledWith(statSync, '../../package.json');
       });
 
       it('matches', () => {
@@ -61,7 +60,7 @@ describe('local', () => {
       });
 
       it('calls statSync', () => {
-        assert.calledWith(statSync, '../package.json');
+        assert.calledWith(statSync, '../../package.json');
       });
 
       it('does not match', () => {
